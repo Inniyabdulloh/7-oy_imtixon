@@ -9,13 +9,13 @@ from .models import Xodimlar, Davomat
 
 
 
-class DashboardView(View):
+class DashboardView(LoginRequiredMixin, View):
     def get(self, request):
         xodimlar = Xodimlar.objects.all()
         return render(request, 'index.html', {'xodimlar': xodimlar})
 
 
-class AttendanceCreate(View):
+class AttendanceCreate(LoginRequiredMixin, View):
     def post(self, request):
         id = request.POST.get('xodim')
         xodim = Xodimlar.objects.get(id=id)
@@ -23,7 +23,7 @@ class AttendanceCreate(View):
         return redirect('dashboard:dashboard')
 
 
-class AttendanceListView(View):
+class AttendanceListView(LoginRequiredMixin, View):
     def get(self, request):
         davomat = Davomat.objects.all()
         return render(request, 'staff/attendance-list.html',{'davomat': davomat})
@@ -44,7 +44,7 @@ class LoginView(View):
         return render(request, 'profile/login.html')
 
 
-class ProfileEditView(View, LoginRequiredMixin):
+class ProfileEditView(LoginRequiredMixin, View):
     def get(self, request):
         user = User.objects.get(id=request.user.id)
         return render(request, 'profile/staff-profile.html', {'user': user})
@@ -77,13 +77,13 @@ class StaffCreateView(LoginRequiredMixin, View):
         return redirect('dashboard:dashboard')
 
 
-class StaffDetailView(View):
+class StaffDetailView(LoginRequiredMixin, View):
     def get(self, request, id):
         xodim = Xodimlar.objects.get(id=id)
         return render(request, 'staff/staff-detail.html', {'xodim': xodim})
 
 
-class StaffListView(View):
+class StaffListView(LoginRequiredMixin, View):
     def get(self, request):
         xodimlar = Xodimlar.objects.all()
         return render(request, 'staff/staff-list.html', {'xodimlar': xodimlar})
@@ -108,9 +108,6 @@ class StaffUpdateView(LoginRequiredMixin, View):
         xodim.save()
         messages.success(request, 'Your Staff Details has been updated.')
         return redirect('dashboard:dashboard')
-
-
-
 
 
 class StaffDeleteView(LoginRequiredMixin, View):
