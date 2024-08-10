@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+>
+<div class="card ms-auto me-4" style="max-width: 75%;">
+            <div class="card-body">
+    <div class="col-8"><div class="card-body">
+    <h5 class="card-title">Xodimlar ro'yxati</h5>
+    <a href="{% url 'dashboard:staff_create' %}" class="btn btn-primary mb-3">Yangi xodim qo'shish</a>
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Full name</th>
+          <th>Position</th>
+          <th>buttons</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for xodim in xodimlar %}
+        <tr>
+          <td>{{ xodim.full_name }}</td>
+          <td>{{ xodim.position }}</td>
+          <td class="me-4">
+            <a href="{% url 'dashboard:staff_detail' xodim.id %}" class="btn btn-info btn-sm">Ko'rish</a>
+            <a href="{% url 'dashboard:staff_update' xodim.id %}" class="btn btn-warning btn-sm">Tahrirlash</a>
+            <a href="{% url 'dashboard:staff_delete' xodim.id %}" class="btn btn-danger btn-sm" >O'chirish</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+    </div>
+</div>
+</div>
+
+
+
+{% endblock %}

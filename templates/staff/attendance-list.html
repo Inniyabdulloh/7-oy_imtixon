@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+<div class="col-9 ms-auto me-4">
+<a href="{% url 'dashboard:dashboard' %}" class="btn btn-primary mb-3">Davomad qo'shish</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">date</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for xodim in davomat %}
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{ xodim.xodim.full_name }}</td>
+          <td>{{ xodim.date | date:"d/m/y h:m"}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+</div>
+
+
+{% endblock %}

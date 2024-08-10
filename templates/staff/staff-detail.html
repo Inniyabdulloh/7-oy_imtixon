@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card ms-auto me-4" style="max-width: 75%;">
+  <div class="card-body">
+  <div class="card-body">
+    <h5 class="card-title">Xodim ma'lumotlari</h5>
+    <dl class="row">
+      <dt class="col-sm-3">Full Name:</dt>
+      <dd class="col-sm-9">{{ xodim.full_name }}</dd>
+      <dt class="col-sm-3">Position:</dt>
+      <dd class="col-sm-9">{{ xodim.position }}</dd>
+      <dt class="col-sm-3">Phone:</dt>
+      <dd class="col-sm-9">{{ xodim.phone }}</dd>
+      <dt class="col-sm-3">Age:</dt>
+      <dd class="col-sm-9">{{ xodim.age }}</dd>
+      <!-- Boshqa ma'lumotlarni qo'shing -->
+    </dl>
+    <a href="{% url 'dashboard:staff_update' xodim.id %}" class="btn btn-warning">Tahrirlash</a>
+    <a href="{% url 'dashboard:staff_list' %}" class="btn btn-secondary">Orqaga</a>
+  </div>
+</div>
+</div>
+
+
+{% endblock %}

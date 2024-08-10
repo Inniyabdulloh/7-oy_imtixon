@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card ms-auto me-4" style="max-width: 75%;">
+            <div class="card-body">
+              <h5 class="card-title">Xodimlar davomati</h5>
+
+              <!-- Floating Labels Form -->
+              <form class="row " method="post" action="{% url 'dashboard:attendance'  %}">
+                {% csrf_token %}
+                <div class="col-lg-6">
+                  <div class="form-floating mb-3">
+                    <select class="form-select" id="floatingSelect" aria-label="State" name="xodim" >
+                        {% for xodim in xodimlar %}
+                            <option value="{{ xodim.id }}">{{ xodim.full_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="floatingSelect">Xodim</label>
+                  </div>
+                </div>
+
+                <div class="">
+                  <button type="submit" class="btn btn-primary">Saqlash</button>
+                </div>
+              </form><!-- End floating Labels Form -->
+
+            </div>
+          </div>
+
+{% endblock %}

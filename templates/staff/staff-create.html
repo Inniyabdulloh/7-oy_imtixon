@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card ms-auto me-4" style="max-width: 75%;">
+    <div class="card-body">
+  <div class="card-body">
+    <h5 class="card-title">Yangi xodim qo'shish</h5>
+    <form enctype="multipart/form-data" method="post" action="{% url 'dashboard:staff_create' %}">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="full_name" class="form-label">Full name</label>
+        <input type="text" class="form-control" id="full_name" name="full_name" required>
+      </div>
+      <div class="mb-3">
+        <label for="position" class="form-label">Position</label>
+        <input type="text" class="form-control" id="position" name="position" required>
+      </div>
+        <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" name="age" required>
+      </div>
+
+        <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="text" class="form-control" id="phone" name="phone" required>
+      </div>
+
+        <div class="mb-3">
+        <label for="photo" class="form-label">Photo</label>
+        <input type="file" class="form-control" id="photo" name="photo" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Saqlash</button>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock %}
